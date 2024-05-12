@@ -8,7 +8,11 @@ select * from Sales.SalesOrderHeader order by OrderDate desc;
 select * from sales.SalesOrderHeader order by OrderDate desc;
 
 --4 Show the product name and the product category for each product.
-select Product.Name , ProductCategory.Name
+select Product.Name , ProductCategory.Name as Category
 from Production.Product
 JOIN Production.ProductCategory
-ON ProductID = ProductCategoryID
+ON ProductID is not NULL;
+
+--4 in simpler solution
+select Product.Name , ProductCategory.Name as Category
+from Production.Product , Production.ProductCategory;
