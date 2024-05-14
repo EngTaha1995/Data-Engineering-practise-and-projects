@@ -1,3 +1,6 @@
+-- always make sure iam connected to the target database
+use AdventureWorks2019
+
 --1 List all the products in the "Product" table.
 select name from Production.Product;
 
@@ -20,3 +23,13 @@ from Production.Product , Production.ProductCategory;
 --5 List the total number of products in each product category.
 select Product.Name , ProductCategoryID from Production.Product , Production.ProductCategory
 group by ProductCategoryID -- okay, this may not be correct! i will take a break
+
+
+--8 Find all orders with a total due between $50000 and $100000
+select * from AdventureWorks2019.Sales.SalesOrderDetail --where order
+
+--9 Find all products whose names start with 'Bike'
+select Name from AdventureWorks2019.Production.Product where Name like 'Bike%'
+
+--10- Find products with a list price less than $100
+select ProductID, Name, ListPrice from AdventureWorks2019.Production.Product where ListPrice < 100;
