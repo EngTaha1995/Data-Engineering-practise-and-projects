@@ -33,3 +33,10 @@ select Name from AdventureWorks2019.Production.Product where Name like 'Bike%'
 
 --10- Find products with a list price less than $100
 select ProductID, Name, ListPrice from AdventureWorks2019.Production.Product where ListPrice < 100;
+
+
+--12 Retrieve the top 5 most expensive products sorted by list price in descending order
+select top 5  Name, Color, ProductNumber, ListPrice from AdventureWorks2019.Production.Product order by ListPrice desc
+
+--13 Calculate total sales, average sales, the maximum and minimum sales order amounts, 
+--and the total number of sales orders from the "SalesOrderHeader" table
