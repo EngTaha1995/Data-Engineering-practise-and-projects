@@ -1,5 +1,5 @@
 -- always make sure iam connected to the target database
-use AdventureWorks2019
+use AdventureWorks2019;
 
 --1 List all the products in the "Product" table.
 select name from Production.Product;
