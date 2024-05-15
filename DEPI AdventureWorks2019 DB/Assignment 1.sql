@@ -24,9 +24,11 @@ from Production.Product , Production.ProductCategory;
 select Product.Name , ProductCategoryID from Production.Product , Production.ProductCategory
 group by ProductCategoryID -- okay, this may not be correct! i will take a break
 
+--6 
+select * from AdventureWorks2019.Production.Product order by Name asc offset 10 FETCH 5;
 
 --8 Find all orders with a total due between $50000 and $100000
-select * from AdventureWorks2019.Sales.SalesOrderDetail --where order
+select * from AdventureWorks2019.Sales.SalesOrderDetail where UnitPrice between 50000 and 100000
 
 --9 Find all products whose names start with 'Bike'
 select Name from AdventureWorks2019.Production.Product where Name like 'Bike%'
@@ -34,6 +36,9 @@ select Name from AdventureWorks2019.Production.Product where Name like 'Bike%'
 --10- Find products with a list price less than $100
 select ProductID, Name, ListPrice from AdventureWorks2019.Production.Product where ListPrice < 100;
 
+--11 Retrieve all sales orders along with the salesperson's name, even if
+--some orders were not handled by a salesperson
+select name, sale
 
 --12 Retrieve the top 5 most expensive products sorted by list price in descending order
 select top 5  Name, Color, ProductNumber, ListPrice from AdventureWorks2019.Production.Product order by ListPrice desc
