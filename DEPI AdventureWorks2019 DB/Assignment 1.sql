@@ -18,7 +18,7 @@ select Product.Name , ProductCategory.Name as Category
 from Production.Product , Production.ProductCategory;
 
 --5 List the total number of products in each product category.
-select  Name from Production.Product  
+select  Name , count() from Production.Product  
 join Production.ProductCategory
 on Product = ProductCategoryID
 ;
@@ -47,7 +47,7 @@ select ProductID, Name, ListPrice from Production.Product where ListPrice < 100 
 
 --11 Retrieve all sales orders along with the salesperson's name, even if
 --some orders were not handled by a salesperson
-select name, sale
+select name, sale ,blah
 
 --12 Retrieve the top 5 most expensive products sorted by list price in descending order
 select top 5  Name, Color, ProductNumber, ListPrice from Production.Product order by ListPrice desc
