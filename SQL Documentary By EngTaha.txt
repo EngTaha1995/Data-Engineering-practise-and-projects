@@ -1,0 +1,44 @@
+## SQL Documentary
+
+Data Manipulation Language (DML):
+
+	INSERT INTO Sales.Order (id, name) VALUES (5, DEFAULT) -- insert id as 5 and name is default you wrote before.
+	
+	INSERT INTO TABLE (blah, blah)
+	SELECT blah blah
+	FROM blah
+	--This code will take the select result and put it in TABLE
+
+
+Procedure is a stored query inside DBMS to be used many times.
+
+Scalar function:
+
+	takes one value and return one value
+	بتاخد قيمه واحده وترجع قيمه واحده
+	ex : upper, lower, length, ceiling --rounds numbers to nearest
+
+Aggregate functions:
+
+	takes multiple values and returns one value
+	ex: count, avg, sum, min, max
+
+implicit vs explicit:
+
+	Implicit: is converting by Accident -- like adding float to int or multiply them
+	Explicit: turning a datatype into another datatype
+
+	CAST('123' AS INT) 	Turning 123 into integer -- cast is ANSI SQL and hence its more portable
+	CONVERT(INT, '12345')
+	TRY_CONVERT() -- If Convert is wrong it returns NULL.
+	PARSE()
+	TRY_PARSE() -- If parse is wrong it returns NULL.
+	
+Other functions:
+
+	ISNUMERIC: Returns 1 if inpus is number -- SELECT ISNUMERIC('SQL)
+	IIF(SALARY>10000 , 'HIGH', 'LOW') -- returns high if true
+	CHOOSE(2,'Taha', 'Hema', 'alaa') -- first parameter is used to select >>> result is Hema
+	COALEASE (COND1,COND2,COND3,'NOT')
+	NULLIF ()
+	

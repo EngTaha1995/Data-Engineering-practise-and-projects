@@ -1,5 +1,5 @@
 --1 List all the products in the "Product" table.
-select name from Production.Product;
+select * from Production.Product;
 
 --2 Find all employees who have a job title of "Sales Representative".
 select * from HumanResources.Employee where JobTitle = 'Sales Representative'
