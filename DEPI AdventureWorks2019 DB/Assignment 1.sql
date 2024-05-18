@@ -18,10 +18,11 @@ select Product.Name , ProductCategory.Name as Category
 from Production.Product , Production.ProductCategory;
 
 --5 List the total number of products in each product category.
-select  Name , count() from Production.Product  
-join Production.ProductCategory
-on Product = ProductCategoryID
-;
+SELECT pc.Name, COUNT(*) AS NoOfProducts
+FROM Production.Product AS p
+JOIN Production.ProductSubcategory AS ps ON p.ProductSubcategoryID = ps.ProductSubcategoryID
+JOIN Production.ProductCategory AS pc ON ps.ProductCategoryID = pc.ProductCategoryID
+GROUP BY pc.Name;
 
 --6 Retrieve the next 5 products after skipping the first 10 products, sorted by product name in ascending order.
 select * from Production.Product 
@@ -30,11 +31,9 @@ offset 10 rows
 FETCH next 5 row only
 
 --7 List all possible combinations of product names and sales territory names
-select Name  , saleName
-from Production.Product , Sales.SalesTerritory
-cross join
-;
-
+select p.Name  , st.Name
+from Production.Product as p, Sales.SalesTerritory as st
+cross join Sales.SalesTerritory as SaleTerriority
 
 --8 Find all orders with a total due between $50000 and $100000
 select * from Sales.SalesOrderDetail where UnitPrice between 50000 and 100000
@@ -47,15 +46,26 @@ select ProductID, Name, ListPrice from Production.Product where ListPrice < 100 
 
 --11 Retrieve all sales orders along with the salesperson's name, even if
 --some orders were not handled by a salesperson
-select name, sale ,blah
+
+SELECT so.SalesOrderID, so.OrderDate, p.FirstName, p.LastName
+FROM Sales.SalesOrderHeader AS so
+LEFT OUTER JOIN Sales.SalesPerson AS sp ON so.SalesPersonID = sp.BusinessEntityID
+LEFT OUTER JOIN Person.Person AS p ON sp.BusinessEntityID = p.BusinessEntityID;
 
 --12 Retrieve the top 5 most expensive products sorted by list price in descending order
 select top 5  Name, Color, ProductNumber, ListPrice from Production.Product order by ListPrice desc
 
 --13 Calculate total sales, average sales, the maximum and minimum sales order amounts, 
 --and the total number of sales orders from the "SalesOrderHeader" table
-select SUM(SalesOrderNumber) as sumofsale , AVG(SalesOrderNumber) as avgS , MAX(SalesOrderNumber) as maxS , MIN(SalesOrderNumber) as MinS from Sales.SalesOrderHeader
+select SUM(SalesOrderNumber) as sumofsale , 
+AVG(SalesOrderNumber) as avgS , MAX(SalesOrderNumber) as maxS 
+, MIN(SalesOrderNumber) as MinS from Sales.SalesOrderHeader
 
 --14- Determine the average line total amount for all the items sold in each product category
-
+SELECT pc.Name AS CategoryName, AVG(sod.LineTotal) AS AverageLineTotal
+FROM Production.Product AS p
+JOIN Sales.SalesOrderDetail AS sod ON p.ProductID = sod.ProductID
+JOIN Production.ProductSubcategory AS psc ON p.ProductSubcategoryID = psc.ProductSubcategoryID
+JOIN Production.ProductCategory AS pc ON psc.ProductCategoryID = pc.ProductCategoryID
+GROUP BY pc.Name;
 
