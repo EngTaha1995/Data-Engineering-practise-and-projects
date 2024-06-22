@@ -9,7 +9,6 @@ Data Manipulation Language (DML):
 	FROM blah
 	--This code will take the select result and put it in TABLE
 
-
 Procedure is a stored query inside DBMS to be used many times.
 
 Scalar function:
@@ -39,6 +38,14 @@ Other functions:
 	ISNUMERIC: Returns 1 if inpus is number -- SELECT ISNUMERIC('SQL)
 	IIF(SALARY>10000 , 'HIGH', 'LOW') -- returns high if true
 	CHOOSE(2,'Taha', 'Hema', 'alaa') -- first parameter is used to select >>> result is Hema
-	COALEASE (COND1,COND2,COND3,'NOT')
+	COALEASE (COND1,COND2,COND3,'NOT') -- Returns first non-NULL Value in input.
 	NULLIF ()
 	
+	
+Having Vs Where:
+	Having is only used with group by and applied to group of rows 
+	where is applied to row by row
+	
+
+Window Functions:
+	All it does is adding another column to the output that can be derived from any function
