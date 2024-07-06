@@ -1,3 +1,3 @@
 import calculator as ca
 
-print(ca.add(6,6))
+print(ca.mul(6,6))
